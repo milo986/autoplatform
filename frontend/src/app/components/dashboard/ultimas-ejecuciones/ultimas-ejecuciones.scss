@@ -1,0 +1,35 @@
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  
+    td {
+      padding: 12px 8px;
+      vertical-align: middle;
+    }
+  
+    th {
+      display: none; // ocultamos encabezados si quieres el mismo look que en la imagen
+    }
+  }
+  
+  .fw-medium {
+    font-weight: 500;
+  }
+  
+  .text-muted {
+    color: #6b7280;
+  }
+  
+  .mat-mdc-table {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  

@@ -1,0 +1,30 @@
+<mat-card
+  class="top-performers-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+  [class.component-rtl-enabled]="themeService.isRTLEnabled()"
+>
+  <mat-card-header>
+    <mat-card-title>
+      <h5 class="mb-0">Workflows Más Activos</h5>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="mt-2">
+      @for (w of workflows; track $index; let i = $index) {
+        <div class="workflow-item">
+          <div class="left-section">
+            <div class="rank-circle">{{ i + 1 }}</div>
+            <div>
+              <h6>{{ w.nombre }}</h6>
+              <span class="text-muted">{{ w.ejecuciones }} ejecuciones</span>
+            </div>
+          </div>
+          <div class="text-end">
+            <div class="fw-semibold">{{ w.tiempoPromedio }}</div>
+            <span class="text-muted-small">tiempo promedio</span>
+          </div>
+        </div>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

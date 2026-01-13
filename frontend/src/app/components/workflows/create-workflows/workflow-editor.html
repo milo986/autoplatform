@@ -1,0 +1,200 @@
+<mat-card class="top-performers-card mb-25 pt-2 border-radius d-block bg-white border-0 shadow-none"
+    [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+
+    <div class="h-full d-flex flex-column" style="flex-grow: 1;">
+
+        <mat-card-header style="flex-shrink: 0;">
+            <div class="bg-white border-bottom p-3 d-flex justify-content-between align-items-center w-100">
+                <div>
+                    <h1 class="mb-1 fw-semibold text-dark" style="font-size: 20px;">
+                        {{ workflow()?.name || 'Nuevo Workflow' }}
+                    </h1>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <button mat-fab extended class="btn btn-outline-primary btn-fab-sm d-flex align-items-center">
+                        <span class="material-symbols-outlined">play_circle</span>
+                        Probar
+                    </button>
+                    <button mat-fab extended class="btn btn-primary btn-fab-sm d-flex align-items-center"
+                        (click)="saveWorkflow()" style="background-color: mediumblue; color: white;">
+                        <span class="material-symbols-outlined">save</span>
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </mat-card-header>
+
+        <mat-card-content class="p-3" style="flex-grow: 1;">
+            <div class="workflow-container d-flex" style="gap: 16px; height: 100%;">
+
+                <!-- Nodos Disponibles: Reducido a 20% -->
+
+                <div class="col nodos d-flex flex-column p-3 mat-elevation-z2" style="flex: 0 0 20%; overflow-y: auto;">
+                    <h3 class="section-title mb-3 fw-semibold" style="flex-shrink: 0;">Nodos Disponibles</h3>
+
+                    <mat-form-field class="w-100 px-4 mb-3" style="flex-shrink: 0;">
+                        <mat-label>Buscar Nodos</mat-label>
+                        <input matInput (input)="filterHandlers($event)" placeholder="Escribe para filtrar..." />
+                    </mat-form-field>
+                    <div class="accordion-wrapper">
+                        <mat-accordion multi>
+                            @for (cat of categories; track cat) {
+                            <mat-expansion-panel class="nodo-categoria-panel">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="categoria-titulo fw-semibold">
+                                        {{ cat }}
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <div class="nodo-lista d-flex flex-column gap-2">
+                                    @for (n of getFilteredNodesByCategory(cat); track n.type) {
+                                    <div class="nodo-item mat-elevation-z2 d-flex align-items-center p-2 rounded"
+                                        draggable="true" (dragstart)="onDragStart($event, n)" style="cursor: grab;"
+                                        (dblclick)="addNodeByDblClick(n)">
+                                        <span class="material-symbols-outlined me-2 text-primary">drag_indicator</span>
+                                        <span style="font-size: 14px; font-weight: 600;">{{ n.name }}</span>
+                                    </div>
+                                    }
+                                </div>
+                            </mat-expansion-panel>
+                            }
+                        </mat-accordion>
+                    </div>
+                </div>
+                <div class="col workflow flex-grow-1 d-flex flex-column mat-elevation-z2 p-3 bg-white rounded"
+                    style="flex: 1 1 70%;" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+
+                    @if (workflow(); as wf) {
+                    <div class="workflow-inner flex-grow-1 overflow-auto">
+                        <h3 class="section-title fw-semibold mb-1">Canvas</h3>
+                        <p class="subtitle text-muted mb-3">
+                            {{ wf.workflow.nodes.length }} nodos, {{ wf.workflow.connections.length }} conexiones
+                        </p>
+
+                        <div id="workflow-canvas" class="workflow-canvas w-full h-full p-4 relative"
+                            style="min-height: 400px; position: relative;" #workflowCanvas
+                            (click)="showAddNodePanel.set(null)">
+
+                            <svg class="connection-svg">
+                                @for (conn of wf.workflow.connections; track conn.id) {
+                                <path [attr.d]="getConnectionPath(conn)" class="flow-path"
+                                    (dblclick)="deleteConnection(conn.id)">
+                                </path>
+                                }
+                                @if (currentLine(); as line) {
+                                <path [attr.d]="getConnectionPath(line)" class="flow-path drawing-line"></path>
+                                }
+                            </svg>
+
+                            @if (showAddNodePanel(); as panelData) {
+                            <div class="add-node-panel mat-elevation-z8 p-3 rounded bg-white"
+                                [style.left.px]="panelData.position.x" [style.top.px]="panelData.position.y"
+                                (click)="$event.stopPropagation();">
+
+                                <h4 class="fw-semibold mb-2">Selecciona el siguiente nodo</h4>
+
+                                <div class="nodo-lista d-flex flex-column gap-2"
+                                    style="max-height: 250px; overflow-y: auto; width: 250px;">
+                                    @for (cat of categories; track cat) {
+                                    @for (n of getNodesByCategory(cat); track n.type) {
+                                    <div class="nodo-item d-flex align-items-center p-2 rounded"
+                                        (click)="selectAndConnectNode(panelData.sourceNode, n)">
+                                        <span class="material-symbols-outlined me-2" style="font-size: 18px;">{{ n.icon
+                                            || 'settings_ethernet' }}</span>
+                                        <span style="font-size: 13px; font-weight: 500;">{{ n.name }} ({{cat}})</span>
+                                    </div>
+                                    }
+                                    }
+                                </div>
+                                <button mat-flat-button color="warn" class="w-100 mt-3"
+                                    (click)="showAddNodePanel.set(null)">Cancelar</button>
+                            </div>
+                            }
+
+                            @for (node of wf.workflow.nodes; track node.id) {
+                            <div class="workflow-node" [id]="'node-' + node.id"
+                                [class.selected]="selectedNode()?.id === node.id" [style.left.px]="node.position.x"
+                                [style.top.px]="node.position.y" (click)="$event.stopPropagation();"
+                                (mousedown)="handleMouseDown($event, node)" (dblclick)="dblClickSelectNode(node)">
+                                <div class="node-icon-wrapper">
+                                    <span class="material-symbols-outlined">settings_ethernet</span>
+
+                                    <!-- Handle de Conexión (A LA DERECHA) -->
+                                    <button mat-icon-button class="handle connect-handle" title="Crear Conexión"
+                                        (mousedown)="$event.stopPropagation(); startConnectionFromNode(node)"
+                                        (mouseup)="$event.stopPropagation(); stopConnection(node)">
+                                    </button>
+                                </div>
+
+                                <div class="node-label-wrapper">
+                                    <div class="node-main-label" 
+                                        matTooltipPosition="below">{{ node.data?.label }}</div>
+                                </div>
+
+                                <!-- BOTONES DE ACCIÓN (Hover) -->
+                                <div class="node-action-buttons d-flex gap-2">
+                                    <button mat-icon-button class="action-button add-button"
+                                        title="Añadir Siguiente Nodo"
+                                        (click)="$event.stopPropagation(); addSuggestedNode(node)">
+                                        <span class="material-symbols-outlined">add_circle_outline</span>
+                                    </button>
+                                    <button mat-icon-button class="action-button delete-button" title="Eliminar Nodo"
+                                        (click)="$event.stopPropagation(); deleteNode(node.id)">
+                                        <span class="material-symbols-outlined">delete_outline</span>
+                                    </button>
+                                </div>
+                            </div>
+                            } @if (wf.workflow.nodes.length === 0) {
+                            <div
+                                class="empty-canvas d-flex flex-column align-items-center justify-content-center h-100 text-muted">
+                                <span class="material-symbols-outlined"
+                                    style="font-size: 48px;">add_circle_outline</span>
+                                <h3 class="fw-semibold mt-2" style="font-size: 18px;">Arrastra nodos aquí</h3>
+                                <p>Conecta diferentes nodos para automatizar tu proceso</p>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                    } @else {
+                    <div
+                        class="empty-canvas d-flex flex-column align-items-center justify-content-center h-100 text-muted">
+                        <span class="material-symbols-outlined" style="font-size: 48px;">account_tree</span>
+                        <h3 class="fw-semibold mt-2" style="font-size: 18px;">Carga o crea un Workflow</h3>
+                        <p>Usa los botones de navegación para seleccionar o crear un nuevo flujo.</p>
+                    </div>
+                    }
+                </div>
+
+                <!-- Propiedades: Reducido a 20% con mejor estilo de caja -->
+                <div class="col propiedades d-flex flex-column p-3 mat-elevation-z2 bg-white rounded"
+                    [style.flex]="selectedNode() ? '0 0 300px' : '0 0 10%'"
+                    style="transition: flex 0.3s ease-in-out; overflow-y: auto;">
+                    <h3 class="section-title mb-3 fw-semibold">
+                        {{ selectedNode() ? 'Propiedades del Nodo' : 'Propiedades' }}
+                    </h3>
+
+                    @if (selectedNode(); as node) {
+                    <div class="node-details-card p-3 rounded-lg shadow-md bg-gray-50">
+                        <mat-form-field class="w-100 mb-3">
+                            <mat-label>Nombre del Nodo</mat-label>
+                            <input matInput [value]="node.data?.label" disabled />
+                        </mat-form-field>
+
+                        <mat-form-field class="w-100 mb-5">
+                            <mat-label>Tipo de Handler</mat-label>
+                            <input matInput [value]="node.data?.handlerType" disabled />
+                        </mat-form-field>
+                    </div>
+
+                    } @else {
+                    <p class="text-muted text-center p-5">Selecciona un nodo en el canvas (doble click) para ver y
+                        editar sus
+                        propiedades aquí.</p>
+                    }
+                </div>
+            </div>
+        </mat-card-content>
+    </div>
+</mat-card>

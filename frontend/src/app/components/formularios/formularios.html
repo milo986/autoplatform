@@ -1,0 +1,129 @@
+<div class="wizard-root">
+
+  <!-- PANTALLA INICIAL -->
+  <section class="hero" *ngIf="!showForm">
+    <div class="hero-card">
+      <h1>Hola 👋</h1>
+      <p>
+        Te ayudaré a configurar tu flujo RPA / n8n paso a paso.
+        Al final generaremos el JSON que n8n usará para crear tu flujo.
+      </p>
+      <button mat-raised-button color="primary" (click)="start()">
+        Comenzar
+      </button>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section class="wizard" *ngIf="showForm">
+    <mat-horizontal-stepper linear #stepper>
+
+      <!-- STEP 1 -->
+      <mat-step [stepControl]="sourceForm">
+        <form [formGroup]="sourceForm">
+          <ng-template matStepLabel>Origen de datos</ng-template>
+
+          <mat-form-field appearance="outline" class="full">
+            <mat-label>Selecciona la entrada</mat-label>
+            <mat-select formControlName="source">
+              <mat-option value="gmail">Correo</mat-option>
+              <mat-option value="ftp">FTP</mat-option>
+              <mat-option value="http">HTTP</mat-option>
+              <mat-option value="drive">Nube</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="step-actions">
+            <button mat-stroked-button (click)="cancel()" type="button">
+              Cancelar
+            </button>
+            <button mat-flat-button color="primary"
+                    matStepperNext
+                    [disabled]="!sourceForm.valid">
+              Siguiente
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- STEP 2 -->
+      <mat-step [stepControl]="configForm">
+        <form [formGroup]="configForm">
+          <ng-template matStepLabel>Configuración</ng-template>
+
+          <!-- GMAIL -->
+          <div *ngIf="sourceForm.value.source === 'gmail'">
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Email de Gmail</mat-label>
+              <input matInput formControlName="gmailEmail">
+            </mat-form-field>
+          </div>
+
+          <!-- FTP -->
+          <div *ngIf="sourceForm.value.source === 'ftp'">
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Host FTP</mat-label>
+              <input matInput formControlName="ftpHost">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Usuario</mat-label>
+              <input matInput formControlName="ftpUser">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="ftpPass">
+            </mat-form-field>
+          </div>
+
+          <!-- HTTP -->
+          <div *ngIf="sourceForm.value.source === 'http'">
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Endpoint HTTP</mat-label>
+              <input matInput formControlName="httpEndpoint">
+            </mat-form-field>
+          </div>
+
+          <!-- DRIVE -->
+          <div *ngIf="sourceForm.value.source === 'drive'">
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>ID de la carpeta</mat-label>
+              <input matInput formControlName="driveFolderId">
+            </mat-form-field>
+          </div>
+
+          <div class="step-actions">
+            <button mat-stroked-button matStepperPrevious>
+              Volver
+            </button>
+            <button mat-flat-button color="primary"
+                    (click)="goNext(stepper)"
+                    [disabled]="!isConfigValid()">
+              Siguiente
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <!-- STEP 3 -->
+      <mat-step>
+        <ng-template matStepLabel>Resumen</ng-template>
+
+        <h3>JSON generado</h3>
+        <pre class="json-preview">{{ buildJson() | json }}</pre>
+
+        <div class="step-actions">
+          <button mat-stroked-button matStepperPrevious>
+            Volver
+          </button>
+          <button mat-flat-button color="primary" (click)="submit()">
+            Enviar a n8n
+          </button>
+        </div>
+      </mat-step>
+
+    </mat-horizontal-stepper>
+  </section>
+
+</div>

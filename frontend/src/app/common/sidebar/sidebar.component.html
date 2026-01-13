@@ -1,0 +1,69 @@
+<div [ngClass]="{'active': isSidebarToggled}" class="sidebar-area bg-white transition active"
+    [class.expanded]="isSidebarToggled" [class.dark-sidebar]="themeService.isSidebarDark()"
+    [class.hide-sidebar]="themeService.isHideSidebar()" [class.card-borderd]="themeService.isCardBordered()"
+    [class.component-dark-theme]="themeService.isDark()" [class.right-sidebar]="themeService.isRightSidebar()"
+    [class.component-body-bg-color]="themeService.isBodyBG()"
+    [class.component-rtl-enabled]="themeService.isRTLEnabled()"
+    [class.card-with-box-shadow]="themeService.isCardWithBoxShadow()">
+    <div class="logo bg-white">
+        <a routerLink="/dashboard" class="d-flex align-items-center position-relative">
+            <img src="media/favicon.png" class="position-relative" alt="logo-icon">
+            <span class="fw-bold text-black lh-1 transition position-relative">
+                AutoPlatform
+            </span>
+        </a>
+    </div>
+    <div (click)="toggle()" class="burger-menu transition" [ngClass]="{'active': isSidebarToggled}">
+        <span class="top-bar transition d-block bg-black"></span>
+        <span class="middle-bar transition d-block bg-black"></span>
+        <span class="bottom-bar transition d-block bg-black"></span>
+    </div>
+    <ng-scrollbar visibility="hover">
+        <div class="sidebar-inner">
+            <div class="sidebar-menu">
+                <mat-accordion>
+                    <span class="sub-title d-block fw-medium text-uppercase">
+                        CONTROL
+                    </span>
+                    <a routerLink="/dashboard" class="sidebar-menu-link dashboard" routerLinkActive="active">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="title">Dashboard</span>
+                    </a>
+
+                    <a routerLink="/workflows" class="sidebar-menu-link workflows"
+                        routerLinkActive="active">
+                        <span class="material-symbols-outlined">play_circle</span>
+                        <span class="title">Workflows</span>
+                    </a>
+
+                    <a routerLink="/templates" class="sidebar-menu-link templates" routerLinkActive="active">
+                        <span class="material-symbols-outlined">edit_document</span>
+                        <span class="title">Templates</span>
+                    </a>
+
+                    <a routerLink="/ejecuciones" class="sidebar-menu-link ejecuciones" routerLinkActive="active">
+                        <span class="material-symbols-outlined">bar_chart_4_bars</span>
+                        <span class="title">Ejecuciones</span>
+                    </a>
+
+                    <a routerLink="/users" class="sidebar-menu-link usuarios" routerLinkActive="active">
+                        <span class="material-symbols-outlined">groups</span>
+                        <span class="title">Usuarios</span>
+                    </a>
+
+                    <a routerLink="/Formularios" class="sidebar-menu-link Formularios"
+                        routerLinkActive="active">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span class="title">Formulario N8N</span>
+                    </a>
+
+                    <a routerLink="/settings" class="sidebar-menu-link configuracion"
+                        routerLinkActive="active">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span class="title">Configuración</span>
+                    </a>
+                </mat-accordion>
+            </div>
+        </div>
+    </ng-scrollbar>
+</div>

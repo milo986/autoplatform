@@ -1,0 +1,82 @@
+.wizard-root {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 14px;
+  max-width: 720px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease;
+}
+
+.hero-card h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.hero-card p {
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.wizard {
+  width: 100%;
+  max-width: 1000px;
+  animation: slideUp 0.3s ease;
+}
+
+.full {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.json-preview {
+  background: #f6f8fa;
+  padding: 16px;
+  border-radius: 10px;
+  max-height: 300px;
+  overflow: auto;
+  font-size: 13px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,662 @@
+<div class="d-flex justify-content-between align-items-center mb-7">
+    <mat-card-title>
+        <h1 class="fw-bold fs-2hx text-gray-900 mb-2">Usuarios</h1>
+        <h6 class="text-body">Gestiona los usuarios y sus permisos en la plataforma
+        </h6>
+    </mat-card-title>
+    <button mat-fab extended color="primary" class="btn-fab-sm" [routerLink]="['/workflows/edit']"
+        routerLinkActive="router-link-active">
+        <span class="material-symbols-outlined">add</span>
+        Nuevo Usuario
+    </button>
+
+</div>
+<mat-card class="chat-sidebar-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+    [class.component-rtl-enabled]="themeService.isRTLEnabled()" [class.component-dark-theme]="themeService.isDark()">
+    <mat-card-content>
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Todos">
+                <mat-card class="bt-recent-leads-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+                    [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h5 class="mb-0">
+                                Recent Leads
+                            </h5>
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            <form class="search-box position-relative">
+                                <label>
+                                    <i class="material-symbols-outlined">
+                                        search
+                                    </i>
+                                </label>
+                                <input type="text" class="input-search" placeholder="Search">
+                            </form>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="basic-table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="fw-medium">
+                                            Customer
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Email
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Source
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user11.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    David Brown
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>david&#64;trezo.com</td>
+                                        <td>Organic</td>
+                                        <td>
+                                            <span class="trezo-badge">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user12.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Sarah Miller
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>sara&#64;trezo.com</td>
+                                        <td>Social</td>
+                                        <td>
+                                            <span class="trezo-badge pending">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user13.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Michael Wilson
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>micheal&#64;trezo.com</td>
+                                        <td>Website</td>
+                                        <td>
+                                            <span class="trezo-badge inProgress">
+                                                In Progress
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user8.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Amanda Clark
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>amanda&#64;trezo.com</td>
+                                        <td>Paid</td>
+                                        <td>
+                                            <span class="trezo-badge">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user14.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Jennifer Taylor
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>taylor&#64;trezo.com</td>
+                                        <td>Others</td>
+                                        <td>
+                                            <span class="trezo-badge rejected">
+                                                Rejected
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Activos">
+                <mat-card class="bt-recent-leads-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+                    [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h5 class="mb-0">
+                                Recent Leads
+                            </h5>
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            <form class="search-box position-relative">
+                                <label>
+                                    <i class="material-symbols-outlined">
+                                        search
+                                    </i>
+                                </label>
+                                <input type="text" class="input-search" placeholder="Search">
+                            </form>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="basic-table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="fw-medium">
+                                            Customer
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Email
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Source
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user11.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    David Brown
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>david&#64;trezo.com</td>
+                                        <td>Organic</td>
+                                        <td>
+                                            <span class="trezo-badge">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user12.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Sarah Miller
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>sara&#64;trezo.com</td>
+                                        <td>Social</td>
+                                        <td>
+                                            <span class="trezo-badge pending">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user13.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Michael Wilson
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>micheal&#64;trezo.com</td>
+                                        <td>Website</td>
+                                        <td>
+                                            <span class="trezo-badge inProgress">
+                                                In Progress
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user8.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Amanda Clark
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>amanda&#64;trezo.com</td>
+                                        <td>Paid</td>
+                                        <td>
+                                            <span class="trezo-badge">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user14.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Jennifer Taylor
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>taylor&#64;trezo.com</td>
+                                        <td>Others</td>
+                                        <td>
+                                            <span class="trezo-badge rejected">
+                                                Rejected
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+            <mat-tab label="Inactivos">
+                <mat-card class="bt-recent-leads-card mb-25 border-radius d-block bg-white border-0 shadow-none"
+                    [class.component-rtl-enabled]="themeService.isRTLEnabled()">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <h5 class="mb-0">
+                                Recent Leads
+                            </h5>
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            <form class="search-box position-relative">
+                                <label>
+                                    <i class="material-symbols-outlined">
+                                        search
+                                    </i>
+                                </label>
+                                <input type="text" class="input-search" placeholder="Search">
+                            </form>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="basic-table table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="fw-medium">
+                                            Customer
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Email
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Source
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="fw-medium">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user11.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    David Brown
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>david&#64;trezo.com</td>
+                                        <td>Organic</td>
+                                        <td>
+                                            <span class="trezo-badge">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user12.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Sarah Miller
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>sara&#64;trezo.com</td>
+                                        <td>Social</td>
+                                        <td>
+                                            <span class="trezo-badge pending">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user13.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Michael Wilson
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>micheal&#64;trezo.com</td>
+                                        <td>Website</td>
+                                        <td>
+                                            <span class="trezo-badge inProgress">
+                                                In Progress
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user8.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Amanda Clark
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>amanda&#64;trezo.com</td>
+                                        <td>Paid</td>
+                                        <td>
+                                            <span class="trezo-badge">
+                                                Confirmed
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="customer-info d-flex align-items-center">
+                                                <div class="img">
+                                                    <img alt="user-image" class="rounded-circle"
+                                                        src="images/users/user14.jpg" />
+                                                </div>
+                                                <span class="d-block text-black fw-medium">
+                                                    Jennifer Taylor
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>taylor&#64;trezo.com</td>
+                                        <td>Others</td>
+                                        <td>
+                                            <span class="trezo-badge rejected">
+                                                Rejected
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <div class="action-buttons d-flex align-items-center">
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> visibility </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> edit </i>
+                                                </button>
+                                                <button type="button" mat-button>
+                                                    <i class="material-symbols-outlined"> delete </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

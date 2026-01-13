@@ -1,0 +1,57 @@
+.rank-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #eef2ff; // tono suave violeta
+    color: #4f46e5; // violeta más fuerte
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8px;
+    border-bottom: 1px solid #f3f4f6;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+h6 {
+    color: #111827;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.text-muted {
+    color: #6b7280 !important;
+    font-size: 0.8rem;
+}
+
+.text-end {
+    text-align: right;
+}
+
+.fw-semibold {
+    color: #111827;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.text-muted-small {
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
